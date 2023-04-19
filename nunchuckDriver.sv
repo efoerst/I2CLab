@@ -1,4 +1,4 @@
-	module nunchuckDriver(clock, SDApin, SCLpin, stick_x, stick_y, accel_x, accel_y, accel_z, z, c, rst);
+module nunchuckDriver(clock, SDApin, SCLpin, stick_x, stick_y, accel_x, accel_y, accel_z, z, c, rst);
 	input clock, rst;
 	inout SDApin;
 	output SCLpin;
@@ -73,8 +73,8 @@
 	*/
 	
 	clockdividers #(MESSAGE_RATE) polling_clock_uut(clock, rst, polling_clock); 		//this clock corresponds to each I2C instruction 
-	// polling i2c_clock_uut(rst, clock, i2c_clock); //clock is for spacing out messages to send
-	clockdividers #(I2C_CLOCK_SPEED) i2c_clock_uut(clock, rst, i2c_clock); 		//this clock corresponds to each I2C instruction 
+	polling i2c_clock_uut(rst, clock, i2c_clock); //clock is for spacing out messages to send
+	//clockdividers #(I2C_CLOCK_SPEED) i2c_clock_uut(clock, rst, i2c_clock); 		//used to replace pll i2c clock in simulation
 
 	
 	
